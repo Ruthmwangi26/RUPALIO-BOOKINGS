@@ -28,7 +28,7 @@ Welcome to Rupalio bookings!
 * website link
 
 # Link
-Here is the link to the website (https://patwer.github.io/Week3_IP_DelaniStudio/)
+Here is the link to the website (https://rupalio-bookings.onrender.com/)
 
 # Technology Used
 * HTML -To build the page contents.
