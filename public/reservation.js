@@ -29,15 +29,16 @@ const Region = String (regionElement.value);
             $("form").submit(function(){
                 var  name = $('input').val();
                 var  Region = $('input').val();
+                console.log(name, Region);
                 var id = $('form').attr('data-id');
                 $.ajax({
                     method: 'post',
                     url: 'DATABASE_URL'+id,
                     headers: {'Content-Type': 'application/json'},
-                    data: JSON.stringify({
+                    data:{
                         'name': name,
                         'Region': Region
-                    }),
+                    },
                     error: function(err){
                         console.log(err)
                     }

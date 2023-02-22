@@ -6,14 +6,19 @@ router.get('/booking', (req, res,next)=>{
     // res.send({type: 'GET'});
     Booking.find({}).then((booking)=>{
         res.send(booking );
+    }) .catch(err => {
+      res.send(err);
     });
+
 })
 // post request
 router.post('/booking', (req, res,next)=>{
     Booking.create(req.body).then((booking)=>{
         res.send(booking)
-    }).catch(next)
-
+      
+    }).catch(err => {
+      res.send(err);
+    });
 
     });
 
