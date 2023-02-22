@@ -18,9 +18,18 @@ mongoose.connect(connectionString);
 // // to prevent duplication
 mongoose.Promise = global.Promise;
 
+const database = mongoose.connection;
+
+database.on('error', (error) => {
+    console.log(error);
+});
+
+database.once('connected', () => {
+    console.log('Database connected');
+});
 
 // route export
-app.use('/api',require('./routes/api'));
+app.use('/api',router);
 
 //register view engine
 app.set('view engine', 'ejs');
@@ -39,34 +48,35 @@ app.listen(PORT, () => {
 //  / view engine connection
     app.get('/', (req, res)=>{
     res.render('index');
-    router.patch('/:id', async function (req, res) {
-        const id = req.params.id;
-        const updatedData = req.body;
-        console.log(id)
-        console.log(updatedData)
-
-        try {
-            const dataUpdate = await bookingModel.findByIdAndUpdate(id, updatedData, { new: true });
-            res.status(200).json(dataUpdate);
-        } catch (error) {
-            res.status(400).json({ message: error.message });
-        }
-     });
+    
     });
-
+//booking route
+app.get('/booking/create', (req, res) => {
+    res.render('create', { title: 'Create a new booking' });
+  });
+  
+  app.get('/booking', (req, res) => {
+    Booking.find().sort({ createdAt: -1 })
+      .then(result => {
+        res.render('index', { booking: result, title: 'All bookings' });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 
   //  db form data collections
 
-    app.post('./routes/api',(req,res)=>{
+//     app.post('./routes/api',(req,res)=>{
 
-    const booking = new booking(req.body);
-      booking.save()
-    .then((results) =>{S
-        res.redirect('/');
-        console.log(req.body);
-    }).catch(next);
+//     const booking = new Booking(req.body);
+//       booking.save()
+//     .then((result) =>{
+//         res.redirect('/');
+//         console.log(req.body);
+//     }).catch(next);
 
-});
+// });
 
    //  404 error
 

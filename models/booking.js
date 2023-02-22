@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const BookingSchema = new Schema({
     name:{
         type: String,
-        required:[true,'Name field is required']
+        required: true
     },
     Region:{
         type: String
