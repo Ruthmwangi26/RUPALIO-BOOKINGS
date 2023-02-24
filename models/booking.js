@@ -5,15 +5,12 @@ const Schema = mongoose.Schema;
 const BookingSchema = new Schema({
     name:{
         type: String,
-        required: true
+        required: true,
     },
     Region:{
-        type: String
+        type: String,
+        required: false,
     },
-
 });
 
-
-const Booking = mongoose.model('booking', BookingSchema);
-
-module.exports= Booking;
+module.exports = mongoose.model('Booking', BookingSchema);
