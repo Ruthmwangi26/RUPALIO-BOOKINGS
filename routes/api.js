@@ -10,7 +10,7 @@ router.get('/create', (req, res) => {
 
 // get request
 router.get('/', (req, res) => {
-  Booking.find().sort({ createdAt: -1 })
+  Booking.findOne().sort({ createdAt: -1 })
     .then(result => {
       res.render('bookings', { booking: result, title: 'All bookings' });
     })
