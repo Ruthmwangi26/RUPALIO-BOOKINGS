@@ -5,7 +5,10 @@ const Booking = require('./../models/booking');
 
 //booking route
 router.get('/create', (req, res) => {
-  res.render('index', { url: process.env.SELF_URL });
+  res.render('index', { url: process.env.SELF_URL })
+  .catch(err => {
+    res.status(400).json({ message: err.message });
+  });
 });
 
 // get request
@@ -17,7 +20,7 @@ router.get('/', (req, res) => {
     .catch(err => {
       res.status(400).json({ message: err.message });
     });
-})
+});
 
 // post request
 router.post('/', (req, res) => {
