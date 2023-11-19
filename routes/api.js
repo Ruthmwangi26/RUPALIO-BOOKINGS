@@ -26,7 +26,11 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   Booking.create(req.body).then((booking) => {
     res.send(booking);
-  }).catch(err => {
+  
+  })
+  
+  
+  .catch(err => {
     res.status(400).json({ message: err.message });
   });
 });

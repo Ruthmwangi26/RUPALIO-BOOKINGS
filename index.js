@@ -34,6 +34,15 @@ app.use(express.json());
 // route export
 app.use('/booking', bookingRoutes)
 
+// asynchronous task function
+async function PerformAsyncTask() {
+  return new Promise((resolve)=>{
+  // Simulating an asynchronous task (e.g., fetching data from a database)
+  setTimeout(() => {
+    resolve('Task completed');  
+  }, 3000);
+  })
+}
 // view engine connection
 app.get('/', (req, res) => {
   res.render('index');
